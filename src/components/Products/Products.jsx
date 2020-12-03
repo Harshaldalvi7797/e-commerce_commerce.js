@@ -6,8 +6,20 @@ import { Grid } from "@material-ui/core";
 import Product from "./Product/Product";
 
 const products = [
-  { id: 1, name: "Shooes", description: "hello" },
-  { id: 2, name: "Shirts", description: "Awesome" }
+  {
+    id: 1,
+    name: "Shooes",
+    description: "hello",
+    image:
+      "https://image.shutterstock.com/image-photo/waves-water-river-sea-meet-600w-1529923664.jpg"
+  },
+  {
+    id: 2,
+    name: "Shirts",
+    description: "Awesome",
+    image:
+      "https://image.shutterstock.com/image-photo/autumn-forest-nature-vivid-morning-600w-766886038.jpg"
+  }
 ];
 const Products = () => {
   return (
