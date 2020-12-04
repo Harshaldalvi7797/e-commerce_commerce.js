@@ -8,7 +8,7 @@ export default makeStyles(theme => ({
     borderBottom: "1px solid rgba(0, 0, 0, 0.12)",
     [theme.breakpoints.up("sm")]: {
       width: `calc(100% - ${drawerWidth}px)`,
-      marginLeft: drawerWidth
+      marginLeft: drawerWidth,backgroundColor:"none"
     }
   },
   title: {

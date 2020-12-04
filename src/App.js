@@ -35,7 +35,7 @@ export default function App() {
   return (
     <div>
       E-Commerce
-      <Navbar />
+      <Navbar totalItems={cart.total_items} />
       <br />
       <br />
       <br />

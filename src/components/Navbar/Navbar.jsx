@@ -10,15 +10,16 @@ import {
   Menu,
   Typography
 } from "@material-ui/core";
+import { ShoppingCart } from "@material-ui/icons";
 import logo from "../../assets/commerce.png";
 import useStyles from "./styles";
-const Navbar = () => {
+const Navbar = ({ totalItems }) => {
   const classes = useStyles();
   return (
     <div>
       <AppBar position="fixed">
         <Toolbar>
-          <Typography variant="h6" className={classes.title} color="inherit">
+          <Typography variant="h6" className={classes.title} color="">
             <img
               src={logo}
               alt="commerce.js"
@@ -29,10 +30,11 @@ const Navbar = () => {
           </Typography>
           <div className={classes.grow} />
           <div className={classes.button}>
-            <IconButton
-              aria-label="Show cart items"
-              color="inherit"
-            ></IconButton>
+            <IconButton aria-label="Show cart items">
+              <Badge badgeContent={totalItems} color="secondary">
+                <ShoppingCart />
+              </Badge>
+            </IconButton>
           </div>
         </Toolbar>
       </AppBar>
