@@ -3,7 +3,9 @@
 import React, { useState, useEffect } from "react";
 import { commerce } from "./lib/commerce";
 import Products from "./components/Products/Products";
+import Cart from "./components/Cart/Cart";
 import Navbar from "./components/Navbar/Navbar";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 export default function App() {
   const [products, setProducts] = useState([]);
@@ -33,13 +35,18 @@ export default function App() {
   console.log(products);
   console.log(cart);
   return (
-    <div>
+    <Router>
       E-Commerce
       <Navbar totalItems={cart.total_items} />
-      <br />
-      <br />
-      <br />
-      <Products products={products} onAddToCart={handleToCart} />
-    </div>
+      <Switch>
+        <Route exact path="/">
+          <Products products={products} onAddToCart={handleToCart} />
+        </Route>
+        <Route exact path="/cart">
+          <Cart cart={cart} />
+        </Route>
+      </Switch>
+      <div></div>
+    </Router>
   );
 }
