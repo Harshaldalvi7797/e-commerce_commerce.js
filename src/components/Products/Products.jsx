@@ -19,9 +19,23 @@ const products = [
     description: "Awesome",
     image:
       "https://image.shutterstock.com/image-photo/autumn-forest-nature-vivid-morning-600w-766886038.jpg"
+  },
+  {
+    id: 3,
+    name: "Shirts",
+    description: "Awesome",
+    image:
+      "https://image.shutterstock.com/image-photo/autumn-forest-nature-vivid-morning-600w-766886038.jpg"
+  },
+  {
+    id: 4,
+    name: "Shirts",
+    description: "Awesome",
+    image:
+      "https://image.shutterstock.com/image-photo/autumn-forest-nature-vivid-morning-600w-766886038.jpg"
   }
 ];
-const Products = () => {
+const Products = ({ products }) => {
   return (
     <main>
       <Grid container justify="center" spacing={4}>
