@@ -5,6 +5,7 @@ import { commerce } from "./lib/commerce";
 import Products from "./components/Products/Products";
 import Cart from "./components/Cart/Cart";
 import Navbar from "./components/Navbar/Navbar";
+import Checkout from "./components/CheckoutForm/Checkout/Checkout";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 export default function App() {
@@ -50,7 +51,6 @@ export default function App() {
   console.log(cart);
   return (
     <Router>
-      E-Commerce
       <Navbar totalItems={cart.total_items} />
       <Switch>
         <Route exact path="/">
@@ -63,6 +63,9 @@ export default function App() {
             removeFromCart={removeFromCart}
             handleEmptyCart={handleEmptyCart}
           />
+        </Route>
+        <Route exact path="/checkout">
+          <Checkout cart={cart} />
         </Route>
       </Switch>
       <div></div>
