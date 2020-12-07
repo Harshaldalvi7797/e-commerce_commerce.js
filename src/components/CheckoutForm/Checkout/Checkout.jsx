@@ -22,7 +22,8 @@ import Cart from "../../Cart/Cart";
 
 const steps = ["shipping address", "payment details"];
 
-export default function Checkout({ cart }) {
+const Checkout = ({ cart }) => {
+  console.log(cart);
   const [activeStep, setActiveStep] = useState(0);
   const [checkoutToken, setCheckoutToken] = useState(null);
   const classes = useStyle();
@@ -36,7 +37,7 @@ export default function Checkout({ cart }) {
         console.log(token);
         setCheckoutToken(token);
       } catch (error) {
-        console.log(error);
+        console.log(error.message);
       }
     };
     generateToken();
@@ -71,4 +72,5 @@ export default function Checkout({ cart }) {
       </main>
     </React.Fragment>
   );
-}
+};
+export default Checkout;

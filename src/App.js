@@ -8,7 +8,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Checkout from "./components/CheckoutForm/Checkout/Checkout";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-export default function App() {
+const App = () => {
   const [products, setProducts] = useState([]);
 
   const [cart, setCart] = useState([]);
@@ -71,4 +71,5 @@ export default function App() {
       <div></div>
     </Router>
   );
-}
+};
+export default App;
