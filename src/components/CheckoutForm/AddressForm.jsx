@@ -20,10 +20,14 @@ const AddressForm = ({ checkoutToken }) => {
   const [shippingCountry, setShippingCountry] = useState("");
   const [shippingSubdivisions, setShippingSubdivisions] = useState([]);
   const [shippingSubdivision, setShippingSubdivision] = useState([]);
-  const [shippingOption, setShippingOption] = useState([]);
-
+  const [shippingOptions, setShippingOptions] = useState([]);
+  const [shippingOption, setShippingOption] = useState("");
+  console.log(shippingOptions);
+  console.log(shippingOption);
   const methods = useForm();
 
+  console.log(checkoutToken);
+  console.log(setShippingOptions);
   const fetchShippingCountries = async checkoutTokenId => {
     const { countries } = await commerce.services.localeListCountries(
       checkoutTokenId
@@ -32,13 +36,32 @@ const AddressForm = ({ checkoutToken }) => {
     setShippingCountries(countries);
     setShippingCountry(Object.keys(countries)[0]);
   };
+
   const fetchSubdivisions = async countrycode => {
     const { subdivisions } = await commerce.services.localeListSubdivisions(
       countrycode
     );
     setShippingSubdivisions(subdivisions);
     setShippingSubdivision(Object.keys(subdivisions)[0]);
-    console.log(subdivision);
+    console.log(subdivisions);
+  };
+
+  const fetchShippingOptions = async (
+    checkoutTokenId,
+    country,
+    region = null
+  ) => {
+    const options = await commerce.checkout.getShippingOptions(
+      checkoutTokenId,
+      {
+        country,
+        region
+      }
+    );
+
+    setShippingOptions(options);
+    setShippingOption(options[0].id);
+    console.log(options);
   };
 
   useEffect(() => {
@@ -54,7 +77,7 @@ const AddressForm = ({ checkoutToken }) => {
     label: name
   }));
 
-  console.log(countries);
+  // console.log(countries);
 
   const subdivision = Object.entries(shippingSubdivision).map(
     ([code, name]) => ({
@@ -62,7 +85,15 @@ const AddressForm = ({ checkoutToken }) => {
       label: name
     })
   );
-  console.log(subdivision);
+  console.log(shippingSubdivision);
+  useEffect(() => {
+    if (shippingSubdivision)
+      fetchShippingOptions(
+        checkoutToken.id,
+        shippingCountry,
+        shippingSubdivision
+      );
+  }, [shippingSubdivision]);
   return (
     <React.Fragment>
       <Typography
@@ -113,7 +144,8 @@ const AddressForm = ({ checkoutToken }) => {
             </Grid>
             <Grid item xs={12} sm={6}>
               <InputLabel>Shipping Options</InputLabel>
-              <Select fullWidth>
+              <Select fullWidth value={shippingOption}>
+                {}
                 <MenuItem>Select Me</MenuItem>
               </Select>
             </Grid>
